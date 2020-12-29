@@ -51,18 +51,34 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   ]
 
-  //create board
   const grid = document.querySelector('.grid')
+  var cardsChosen = []
+  var cardsChosenId = []
+  //create board
 
   function createBoard() {
     for (let i = 0; i < cardArray.length; i++) {
       var card = document.createElement('img')
       card.setAttribute('src', 'images/blank.jpg')
       card.setAttribute('data-id', i)
-      // card.addEventListener('click', flipcard) {}
+      card.addEventListener('click', flipcard)
       grid.appendChild(card)
     }
   }
+
+  //check for matches
+
+  //flip the card
+  function flipCard() {
+    var cardId = this.getAttribute('data-id')
+    cardsChosen.push(cardArray[cardId].name)
+    cardsChosenId.push(cardId)
+    this.setAttribute('src', cardArray[cardId].img)
+    if (cardsChosen.length === 2) {
+      setTimeout(checkForMatch, 500)
+    }
+  }
+
 
   createBoard();
 })
