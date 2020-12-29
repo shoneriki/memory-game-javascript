@@ -6,6 +6,26 @@ document.addEventListener('DOMContentLoaded', () => {
       img: 'images/fries.jpg'
     },
     {
+      name: 'cheeseburger',
+      img: 'images/cheeseburger.jpg'
+    },
+    {
+      name: 'ice-cream',
+      img: 'images/ice-cream.jpg'
+    },
+    {
+      name: 'pizza',
+      img: 'images/pizza.jpg'
+    },
+    {
+      name: 'milkshake',
+      img: 'images/milkshake.jpg'
+    },
+    {
+      name: 'hotdog',
+      img: 'images/hotdog.jpg'
+    },
+    {
       name: 'fries',
       img: 'images/fries.jpg'
     },
@@ -14,40 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
       img: 'images/cheeseburger.jpg'
     },
     {
-      name: 'cheeseburger',
-      img: 'images/cheeseburger.jpg'
-    },
-    {
-      name: 'hotdog',
-      img: 'images/hotdog.jpg'
-    },
-    {
-      name: 'hotdog',
-      img: 'images/hotdog.jpg'
-    },
-    {
       name: 'ice-cream',
       img: 'images/ice-cream.jpg'
-    },
-    {
-      name: 'ice-cream',
-      img: 'images/ice-cream.jpg'
-    },
-    {
-      name: 'milkshake',
-      img: 'images/milkshake.jpg'
-    },
-    {
-      name: 'milkshake',
-      img: 'images/milkshake.jpg'
     },
     {
       name: 'pizza',
       img: 'images/pizza.jpg'
     },
     {
-      name: 'pizza',
-      img: 'images/pizza.jpg'
+      name: 'milkshake',
+      img: 'images/milkshake.jpg'
+    },
+    {
+      name: 'hotdog',
+      img: 'images/hotdog.jpg'
     },
   ]
 
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
       var card = document.createElement('img')
       card.setAttribute('src', 'images/blank.jpg')
       card.setAttribute('data-id', i)
-      card.addEventListener('click', flipcard)
+      card.addEventListener('click', flipCard)
       grid.appendChild(card)
     }
   }
@@ -75,17 +75,25 @@ document.addEventListener('DOMContentLoaded', () => {
     var cards = document.querySelectorAll('img')
     const optionOneId = cardsChosenId[0]
     const optionTwoId = cardsChosenId[1]
-    if (cardsChosen[0] === cardsChosen[1]) {
+
+    if(optionOneId == optionTwoId) {
+      cards[optionOneId].setAttribute('src', 'images/blank.jpg')
+      cards[optionTwoId].setAttribute('src', 'images/blank.jpg')
+      alert('You clicked the same image')
+    }
+    else if (cardsChosen[0] === cardsChosen[1]) {
       alert('You Found A Match')
       cards[optionOneId].setAttribute('src', 'images/white.jpg')
       cards[optionTwoId].setAttribute('src', 'images/white.jpg')
+      cards[optionOneId].removeEventListener('click', flipCard)
+      cards[optionTwoId].removeEventListener('click', flipCard)
       cardsWon.push(cardsChosen)
     } else {
       cards[optionOneId].setAttribute('src', 'images/blank.jpg')
       cards[optionTwoId].setAttribute('src', 'images/blank.jpg')
       alert('Sorry, Try Again')
     }
-    cardChosen = []
+    cardsChosen = []
     cardsChosenId = []
     resultDisplay.textContent = cardsWon.length
     if (cardsWon.length === cardArray.length/2) {
@@ -99,11 +107,11 @@ document.addEventListener('DOMContentLoaded', () => {
     cardsChosen.push(cardArray[cardId].name)
     cardsChosenId.push(cardId)
     this.setAttribute('src', cardArray[cardId].img)
-    if (cardsChosen.length === 2) {
+    if (cardsChosen.length ===2) {
       setTimeout(checkForMatch, 500)
     }
   }
 
 
-  createBoard();
+  createBoard()
 })
