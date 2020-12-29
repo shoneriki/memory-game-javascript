@@ -76,12 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const optionOneId = cardsChosenId[0]
     const optionTwoId = cardsChosenId[1]
 
-    if(optionOneId == optionTwoId) {
-      cards[optionOneId].setAttribute('src', 'images/blank.jpg')
-      cards[optionTwoId].setAttribute('src', 'images/blank.jpg')
-      alert('You clicked the same image')
+    if (optionOneId == optionTwoId) {
+    cards[optionOneId].setAttribute('src', 'images/blank.jpg')
+    cards[optionTwoId].setAttribute('src', 'images/blank.jpg')
+    alert('You clicked the same card twice')
     }
-    else if (cardsChosen[0] === cardsChosen[1]) {
+    if (cardsChosen[0] === cardsChosen[1]) {
       alert('You Found A Match')
       cards[optionOneId].setAttribute('src', 'images/white.jpg')
       cards[optionTwoId].setAttribute('src', 'images/white.jpg')
